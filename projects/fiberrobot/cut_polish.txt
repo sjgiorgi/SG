@@ -1,0 +1,117 @@
+#!/usr/bin/python
+
+# GUI for cut and polish robot
+# searches serial ports for arduino
+# user enters number of fibers, length of fibers, and cut/polish
+# sends GUI info to arduino: action, number of fibers, length (int part),
+# number of digits in frac part, and length (frac part)
+
+import wx, serial, sys, math, time
+import wx.lib.agw.floatspin as FS
+from serial.tools import list_ports
+
+arduino = '2341'
+
+class MyDialog(wx.Dialog):
+	def __init__(self, parent, id, title):
+		wx.Dialog.__init__(self, parent, id, title, size=(250, 230))
+
+		wx.StaticBox(self, -1, 'Cut and Polish Fibers', (5, 5), size=(240, 170))
+		self.cut = wx.CheckBox(self, -1 ,'Cut', (15, 30))
+		self.cut.SetValue(True)	# initialize check box with checkmark
+		self.polish = wx.CheckBox(self, -1 ,'Polish', (15, 55))
+		self.polish.SetValue(True)	# initialize check box with checkmark
+		wx.StaticText(self, -1, 'Number of Fibers', (15, 95))
+		self.number = wx.SpinCtrl(self, -1, '1', (170, 90), (60, -1), min=1, max=120)
+		wx.StaticText(self, -1, 'Length of Fibers (inches)', (15, 130))
+		self.length = FS.FloatSpin(self, -1, pos=(170, 125), min_val=2, max_val=6, size=(60,25),
+                                 increment=0.01, value=1.00, digits=2, agwStyle=FS.FS_LEFT)
+		self.beginButton = wx.Button(self, 1, 'Begin', (45, 185), (60, -1))
+		self.pauseButton = wx.Button(self, 2, 'Pause', (140, 185), (60, -1))
+		self.close_callback = None
+		self.Centre()	# centers window
+		self.Bind(wx.EVT_BUTTON, self.OnBegin, id=1)
+		self.Bind(wx.EVT_BUTTON, self.OnPause, id=2)
+		self.Bind(wx.EVT_CLOSE, self.OnClose)
+		self.ShowModal()
+		self.Destroy()
+		
+	def OnPause(self, event):
+		ser.write('P') 					# send pause
+		print 'Program is paused.'
+		self.Bind(wx.EVT_BUTTON, self.OnUnPause, id=2)
+		self.pauseButton.SetLabel('Unpause') 
+		self.pauseButton.Update()
+		
+	def OnUnPause(self, event):
+		ser.write('U') 					# send unpause
+		print 'Program is Unpaused.'
+		self.Bind(wx.EVT_BUTTON, self.OnPause, id=2)
+		self.pauseButton.SetLabel('Pause') 
+		self.pauseButton.Update()
+
+	def register_close_callback(self, callback):
+		self.close_callback = callback
+
+	def OnClose(self, event):
+		print 'Finished.'
+		ser.close()
+		doClose = True if not self.close_callback else self.close_callback()
+		if doClose:
+			event.Skip()
+
+	def OnBegin(self, event):
+		time.sleep(1) # time needed for Arduino to initialize
+		action = 0	# 0 = do nothing, 1 = cut, 2 = polish, 3 = both
+		if self.cut.GetValue() == True and self.polish.GetValue() == True:
+			action = 3
+			print "Cutting and polishing %s %s inch fibers." % (self.number.GetValue(), self.length.GetValue())
+		elif self.polish.GetValue() == True:
+			action = 2
+			print "Polishing %s %s inch fibers." % (self.number.GetValue(), self.length.GetValue())
+		elif self.cut.GetValue() == True:
+			action = 1
+			print "Cutting %s %s inch fibers." % (self.number.GetValue(), self.length.GetValue())
+		else:
+			print "Nothing to do."
+			sys.exit()
+		decimal, integer = math.modf(self.length.GetValue())
+		decimalList = list(str(decimal))
+		# send input to arduino
+		ser.write(chr(int(action))) 					# send action
+		ser.write(chr(int(self.number.GetValue()))) 	# send number of fibers
+		ser.write(chr(int(integer))) 					# send length, int part
+		ser.write(chr(int(len(decimalList))))			# send number of digits of frac
+		for i in range(2,len(decimalList)):				# send length, frac part, one digital at a time
+			ser.write(chr(int(decimalList[i])))
+			time.sleep(.001)	# needed to send second decimal 0.0X, why?
+		
+# search serial ports for arduino by VID:PID and SNR
+# USB VID:PID=2341:0001 SNR=7523733353635130F171 for DFRduino RoMeo V1.1
+# USB VID:PID=2341:0042 SNR=64938333932351514102 for Mega
+
+try:
+	ports = list(serial.tools.list_ports.comports())
+	portIndex = [i for i, x in enumerate(ports) if arduino in x[2]]
+except:
+	print "Arduino not found."
+	print "Plug in Arduino."
+	sys.exit()
+	
+SERIALPORT = "/dev/" + str(ports[portIndex[0]][1])
+
+# open serial port
+try:
+	ser = serial.Serial(SERIALPORT, 9600)
+	ser.setDTR(level=False) 
+	# above line is needed to run code without Ardiuno IDE and Serial Monitor
+	# without this line, the Serial Monitor automatically resets the serial connection after each send/receive
+except serial.SerialException:
+	print "Failed to write to port %s." % SERIALPORT
+	print "Plug in Arduino or connect to different port."
+	sys.exit()
+	
+app = wx.App(0)
+md = MyDialog(None, -1, 'cut_polish.py')
+md.register_close_callback(lambda: True)
+app.MainLoop()

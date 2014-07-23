@@ -1,0 +1,117 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Salvatore Giorgi</title>
+	
+	<style type="text/css">
+		.text A:Link  {text-decoration: none; COLOR: black }
+		.text A:Visited  {text-decoration: none; COLOR: black }
+		.text A:Active  {text-decoration: none; COLOR: #000000 }
+		.text A:hover {text-decoration: underline; color: #000000; }
+		
+		.class2 A:Link  {text-decoration: none; COLOR: black }
+		.class2 A:Visited  {text-decoration: none; COLOR: black }
+		.class2 A:Active  {text-decoration: none; COLOR: #000000 }
+		.class2 A:hover {text-decoration: none; color: #000000; }
+
+		body {FONT-FAMILY: Tahoma, Verdana, Arial; FONT-SIZE: 8pt; font-weight: bold; color: #000000}
+		td   {FONT-FAMILY: Tahoma, Verdana, Arial; FONT-SIZE: 8pt; font-weight: bold; color: #000000}
+
+	</style>
+
+</head>
+<body bgcolor="#ffffff">
+
+<table border="0" cellspacing="0" cellpading="10" width="900">
+
+<tr>
+	<td class="class2" colspan="5"><b><p><font size="6"><a href="../index.html">Salvatore Giorgi</a></font><P>
+
+		</td>
+	</tr>
+
+	<tr>
+
+		<td class="text" valign="top" align="left" colspan="1" width="28%">
+			<b><font size="4"><a href="../projects/projects_index.html">PROJECTS</a><br>
+					<font size="1">
+						&#8226; <a href="../projects/rocksat.html">NASA RockSat-C</a><br>
+						&#8226; <a href="../projects/fiberrobot.html">Optical Fiber Cutting Robot</a><br>
+						&#8226; <a href="../projects/neuralnetwork.html">Adaptive Neural Network</a><br>
+						&#8226; <a href="../projects/densityshaping.html">Density Shaping</a><br>
+						&#8226; <a href="../projects/kCC.html">Discrete kCC Control</a><br>
+						&#8226; <a href="../projects/smpc.html">Statistical Model Predictive Control</a><br>
+						&#8226; <a href="../projects/distributed_power.html">Distributed Power System</a><br>
+						
+					</font><font size="4">
+				<a href="../teaching/teaching_index.html">TEACHING</a><br>
+				<a href="../courses/courses_index.html">COURSES</a><br>
+				<a href="../publications/publications_index.html">PUBLICATIONS</a><br>
+				<a href="../mthesis/mthesis_index.html">MASTERS THESIS</a><br>
+				<a href="https://www.dropbox.com/s/oxhrkzz5rn150z7/SGiorgi_CV_References.pdf">CURRICULUM VITAE</a><br>
+				<a href="../contact/contact_index.html">CONTACT</a>
+			</font></b>
+
+
+		</td>
+	
+		<td class="text" colspan="1" width="5%"></td>
+	
+		<td class="text" colspan="3" align="left" valign="top">
+		
+			<font size="5">Discrete kth Cost Cumulant Control</font>
+			
+			
+			<P>ABSTRACT:
+				<BR>We consider a linear, time varying, discrete stochastic system with quadratic cost function.
+				A linear feedback law is developed which minimizes a weighted sum of k cumulants of the cost function.
+				We show that in the special case of k=1, this reduces to the classical LQG result.
+					
+			<P>Report: <a href="https://www.dropbox.com/s/93vto3ink2te06e/kCC.pdf">PDF</a>
+			
+			<P><b>CODE</b>:
+				
+			<P><u>Initalize and run dkCC</u>:
+			<BR><iframe src="../projects/kCC/run_kCC.m" name="run_kCC" width="600" height="200" scrolling="yes" horizontalscrolling="yes"></iframe>
+
+			<P><u>dkCC</u>:
+			<BR><iframe src="../projects/kCC/dkCC.m" name="dkCC" width="600" height="200" scrolling="yes" horizontalscrolling="yes"></iframe>
+
+			<P><u>Calculate P and P_hat for all k and t</u>:
+			<BR><iframe src="../projects/kCC/P_matrix.m" name="P_matrix" width="600" height="200" scrolling="yes" horizontalscrolling="yes"></iframe>
+			
+			<P><u>Compute recursive equation P for i>1</u>:
+			<BR><iframe src="../projects/kCC/compute_P.m" name="compute_P" width="600" height="200" scrolling="yes" horizontalscrolling="yes"></iframe>
+
+			<P><u>Compute recursive equation P_1 (P for i = 1)</u>:
+			<BR><iframe src="../projects/kCC/compute_P_1.m" name="compute_P_1" width="600" height="200" scrolling="yes" horizontalscrolling="yes"></iframe>
+
+			<P><u>Compute recursive equation P_hat</u>:
+			<BR><iframe src="../projects/kCC/compute_P_hat.m" name="compute_P_hat" width="600" height="200" scrolling="yes" horizontalscrolling="yes"></iframe>
+
+			<P><u>Compute recursive equation D</u>:
+			<BR><iframe src="../projects/kCC/compute_D.m" name="compute_D" width="600" height="200" scrolling="yes" horizontalscrolling="yes"></iframe>
+
+			<P><u>Compute recursive equation p</u>:
+			<BR><iframe src="../projects/kCC/compute_small_p.m" name="compute_small_p" width="600" height="200" scrolling="yes" horizontalscrolling="yes"></iframe>
+
+			<P><u>Compute the optimal cost V</u>:
+			<BR><iframe src="../projects/kCC/optimal_cost.m" name="optimal_cost" width="600" height="200" scrolling="yes" horizontalscrolling="yes"></iframe>
+
+			<P><u>Compute the optimal feedback law gamma</u>:
+			<BR><iframe src="../projects/kCC/compute_gamma.m" name="compute_gamma" width="600" height="200" scrolling="yes" horizontalscrolling="yes"></iframe>
+
+			
+			
+			
+
+			
+		</td>
+	
+	</tr>
+
+
+</body>
+</html>

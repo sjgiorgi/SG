@@ -1,0 +1,50 @@
+
+#include <Servo.h> 
+ 
+ Servo myservo_1;  
+ Servo myservo_2;
+ Servo myservo_3;
+ Servo myservo_4;
+ 
+void setup() 
+{ 
+  myservo_1.attach(8);   // attaches the servo on pin 8 to the servo object 
+  myservo_2.attach(9);   // attaches the servo on pin 9 to the servo object
+  myservo_3.attach(10);  // attaches the servo on pin 10 to the servo object
+  myservo_4.attach(11);  // attaches the servo on pin 11 to the servo object
+  myservo_1.write(90);   // start servo1 at 90 degree position
+  myservo_2.write(90);   // start servo2 at 90 degree position
+  myservo_3.write(90);   // start servo3 at 90 degree position
+  myservo_4.write(90);   // start servo4 at 90 degree position
+  
+  delay(11500)            // delay 11.5 seconds
+  myservo_1.write(0);     // open first valve (turn -90 degrees to 0 position)
+  delay(17000);           // delay 17.0 seconds
+  myservo_1.write(90);    // close first valve (turn 90 degrees to 90 position)
+  
+  myservo_2.write(0);     // open second valve (turn -90 degrees to 0 position)
+  delay(24600);           // delay 24.6 seconds
+  myservo_2.write(90);    // close second valve (turn 90 degrees to 90 position)
+  
+  myservo_3.write(0);     // open third valve (turn -90 degrees to 0 position)
+  delay(35700);           // delay 35.7 seconds
+  myservo_3.write(90);    // close third valve (turn 90 degrees to 90 position)
+  
+  myservo_4.write(0);     // open fourth valve (turn -90 degrees to 0 position)        
+  delay(171300);          // delay 171.3 seconds
+  myservo_4.write(90);    // close fourth valve (turn 90 degrees to 90 position)
+  
+  myservo_3.write(0);     // open third valve (turn -90 degrees to 0 position)          
+  delay(36000);           // delay 36.0 seconds
+  myservo_3.write(90);    // close third valve (turn 90 degrees to 90 position)
+  
+  myservo_2.write(0);     // open second valve (turn -90 degrees to 0 position)   
+  delay(25700);           // delay 25.7 seconds
+  myservo_2.write(90);    // close second valve (turn 90 degrees to 90 position)
+  
+  myservo_1.write(0);     // open first valve (turn -90 degrees to 0 position)   
+  delay(66300);           // delay 66.3 seconds
+  myservo_1.write(90);    // close first valve (turn 90 degrees to 90 position)
+} 
+ 
+ 

@@ -1,0 +1,109 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Salvatore Giorgi</title>
+	
+	<style type="text/css">
+		.text A:Link  {text-decoration: none; COLOR: black }
+		.text A:Visited  {text-decoration: none; COLOR: black }
+		.text A:Active  {text-decoration: none; COLOR: #000000 }
+		.text A:hover {text-decoration: underline; color: #000000; }
+		
+		.class2 A:Link  {text-decoration: none; COLOR: black }
+		.class2 A:Visited  {text-decoration: none; COLOR: black }
+		.class2 A:Active  {text-decoration: none; COLOR: #000000 }
+		.class2 A:hover {text-decoration: none; color: #000000; }
+
+		body {FONT-FAMILY: Tahoma, Verdana, Arial; FONT-SIZE: 8pt; font-weight: bold; color: #000000}
+		td   {FONT-FAMILY: Tahoma, Verdana, Arial; FONT-SIZE: 8pt; font-weight: bold; color: #000000}
+
+	</style>
+
+</head>
+<body bgcolor="#ffffff">
+
+<table border="0" cellspacing="0" cellpading="10" width="900">
+
+<tr>
+	<td class="class2" colspan="5"><b><p><font size="6"><a href="../index.html">Salvatore Giorgi</a></font><P>
+
+		</td>
+	</tr>
+
+	<tr>
+
+		<td class="text" valign="top" align="left" colspan="1" width="28%">
+			<b><font size="4"><a href="../projects/projects_index.html">PROJECTS</a><br>
+					<font size="1">
+						&#8226; <a href="../projects/rocksat.html">NASA RockSat-C</a><br>
+						&#8226; <a href="../projects/fiberrobot.html">Optical Fiber Cutting Robot</a><br>
+						&#8226; <a href="../projects/neuralnetwork.html">Adaptive Neural Network</a><br>
+						&#8226; <a href="../projects/densityshaping.html">Density Shaping</a><br>
+						&#8226; <a href="../projects/kCC.html">Discrete kCC Control</a><br>
+						&#8226; <a href="../projects/smpc.html">Statistical Model Predictive Control</a><br>
+						&#8226; <a href="../projects/distributed_power.html">Distributed Power System</a><br>
+						
+					</font><font size="4">
+				<a href="../teaching/teaching_index.html">TEACHING</a><br>
+				<a href="../courses/courses_index.html">COURSES</a><br>
+				<a href="../publications/publications_index.html">PUBLICATIONS</a><br>
+				<a href="../mthesis/mthesis_index.html">MASTERS THESIS</a><br>
+				<a href="https://www.dropbox.com/s/oxhrkzz5rn150z7/SGiorgi_CV_References.pdf">CURRICULUM VITAE</a><br>
+				<a href="../contact/contact_index.html">CONTACT</a>
+			</font></b>
+
+
+		</td>
+	
+		<td class="text" colspan="1" width="5%"></td>
+	
+		<td class="text" colspan="3" align="left" valign="top">
+		
+			<font size="5">Distributed Power System</font>
+			
+			<P><img src="../projects/distributedpower/wind.jpg"><img src="../projects/distributedpower/solar.jpg" width="">
+				<br>Figure: Wind and Solar power systems
+				
+				<P>This project was done with Julio Bravo.</P>
+				
+				<P>ABSTRACT:
+				<BR>We consider a hybrid wind/solar/battery power system with the goal of
+				generating and controlling power to meet a specified power demand. Each
+				subsystem is modeled independently and then their separate power outputs
+				are combined. The systems are combined in such as way that the wind system
+				is considered the primary source and the solar system and battery bank are
+				secondary.  We mathematically model wind and solar power generation systems
+				and verify the power generation with existing literature.
+					
+			<P>Report: <a href="https://www.dropbox.com/s/7nl763leotsoysj/Wind%20Solar%20System.pdf">PDF</a>
+			
+			<P><b>CODE</b>:
+			
+			<P>&#8226; Simulink model of solar system:
+			<br><a href="../projects/distributedpower/solar_model.mdl">solar_model.mdl</a><br>
+			
+			<P>&#8226; Simulink model of wind system using fixed step solver:
+			<br><a href="../projects/distributedpower/wind_dynamic_simulation_FixedStep.slx">wind_dynamic_simulation_FixedStep.slx</a><br>
+			
+			<P>&#8226; Simulink model of wind system using ODE45 solver:
+			<br><a href="../projects/distributedpower/wind_dynamic_simulation_ODE45.slx">wind_dynamic_simulation_FixedStep.slx</a><br>
+			
+			<P><u>Runge Kutta method for solving nonlinear wind system, Intializes all weather inputs</u>:
+			<BR><iframe src="../projects/distributedpower/R_K_160.m" name="runge_kutta" width="600" height="200" scrolling="yes" horizontalscrolling="yes"></iframe>
+
+			<P><u>Initalizes all inputs for solar system simulations</u>:
+			<BR><iframe src="../projects/distributedpower/solar_initial.m" name="solar_initial" width="600" height="200" scrolling="yes" horizontalscrolling="yes"></iframe>
+
+			
+				
+
+			
+		</td>
+	
+	</tr>
+
+
+</body>
+</html>
